@@ -14,7 +14,7 @@ public class MainCharacterController : MonoBehaviour
     public float speedMovementAnimstion;
     public CharacterController characterController;
 
-    public Vector3 mousePosition;
+  //  public Vector3 mousePosition;
 
     private Vector3 velocity;
     public Transform groundCheck;
