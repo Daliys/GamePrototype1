@@ -49,7 +49,7 @@ public class MainCharacterController : MonoBehaviour
             //worldPosition.y = transform.position.y + transform.localScale.y;
             Vector2 lookDir = new Vector2(worldPosition.x, worldPosition.z) - new Vector2(transform.position.x, transform.position.z);
 
-            float angle = Mathf.Atan2(lookDir.x, lookDir.y) * Mathf.Rad2Deg + 180f;
+            float angle = Mathf.Atan2(lookDir.x, lookDir.y) * Mathf.Rad2Deg;// + 180f;
             transform.eulerAngles = new Vector3(0, angle, 0);
            // transform.LookAt(worldPosition);
         }
