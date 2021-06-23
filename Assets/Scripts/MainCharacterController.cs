@@ -24,6 +24,8 @@ public class MainCharacterController : MonoBehaviour
 
     public bool isGiftInHnad = false;
 
+    private float dashSpeedMult = 1;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -69,6 +71,8 @@ public class MainCharacterController : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
+       
+
         //if (Game.isPause) return;
 
 
@@ -97,13 +101,24 @@ public class MainCharacterController : MonoBehaviour
 
         }
 
-        Vector3 move = moveDirection * speed;
+        Vector3 move = moveDirection * speed * dashSpeedMult;
+
+
+        if (Input.GetButtonDown("Dash") && dashSpeedMult == 1f){
+            StartCoroutine(DashTimer());
+        }
         move.y = velocity.y;
 
         //transform.position += move*Time.deltaTime;
         characterController.Move(move * Time.deltaTime);
     }
 
+    IEnumerator DashTimer()
+    {
+        dashSpeedMult = 8;
+        yield return new WaitForSecondsRealtime(0.1f);
+        dashSpeedMult = 1f;
+    }
 
 
     private void FixedUpdate()

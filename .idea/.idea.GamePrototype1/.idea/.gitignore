@@ -1,0 +1,13 @@
+﻿# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/contentModel.xml
+/projectSettingsUpdater.xml
+/modules.xml
+/.idea.GamePrototype1.iml
+# Datasource local storage ignored files
+/../../../../../../../../:\Daliys\Unity\Projects\GamePrototype1\.idea\.idea.GamePrototype1\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
