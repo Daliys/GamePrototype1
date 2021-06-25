@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5607643507305972597}
   - component: {fileID: 4459059971352121830}
   - component: {fileID: 9167465047185498128}
+  - component: {fileID: 2615660209701945052}
   m_Layer: 0
   m_Name: Tree2
   m_TagString: Untagged
@@ -81,6 +82,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2615660209701945052
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493565569231130599}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.60688, y: 2.1546247, z: 2.6068802}
+  m_Center: {x: 0.00000011920929, y: 0.22222853, z: 0.00000029802322}
 --- !u!1 &5515303093063227680
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,6 +138,7 @@ GameObject:
   - component: {fileID: 2255462302217208878}
   - component: {fileID: 5493000852601072638}
   - component: {fileID: 2753537176464469597}
+  - component: {fileID: 1876662547044658307}
   m_Layer: 0
   m_Name: Tree2_Stump
   m_TagString: Untagged
@@ -195,3 +210,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1876662547044658307
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5535191698987349573}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.76495385, y: 0.5340175, z: 0.764954}
+  m_Center: {x: -0.00000013411045, y: 0.18380538, z: -0.0000001937151}

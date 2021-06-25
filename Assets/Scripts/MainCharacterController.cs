@@ -47,7 +47,7 @@ public class MainCharacterController : MonoBehaviour
         if (plane.Raycast(ray, out distance))
         {
             worldPosition = ray.GetPoint(distance);
-            print(worldPosition);
+           // print(worldPosition);
             //worldPosition.y = transform.position.y + transform.localScale.y;
             Vector2 lookDir = new Vector2(worldPosition.x, worldPosition.z) - new Vector2(transform.position.x, transform.position.z);
 
@@ -57,6 +57,9 @@ public class MainCharacterController : MonoBehaviour
         }
 
 
+
+        // jumping
+        /*
         isGround = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (isGround && velocity.y < 0)
@@ -70,7 +73,7 @@ public class MainCharacterController : MonoBehaviour
         //    animator.SetBool("Jump", true);
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
-
+        */
        
 
         //if (Game.isPause) return;
