@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,9 +23,12 @@ public class MainCharacterController : MonoBehaviour
     public LayerMask groundMask;
     public bool isGround;
 
-    public bool isGiftInHnad = false;
 
     private float dashSpeedMult = 1;
+
+
+  //  public event EventHandler<EventArgs> OnShoot;
+ 
 
     void Start()
     {
@@ -39,7 +43,10 @@ public class MainCharacterController : MonoBehaviour
         //mousePosition = camera.ScreenToWorldPoint(Input.mousePosition);
         //print(Input.mousePosition);
 
-         Vector3 worldPosition;
+      
+
+        /*
+        Vector3 worldPosition;
         Plane plane = new Plane(Vector3.up, 0);
 
         float distance;
@@ -54,8 +61,11 @@ public class MainCharacterController : MonoBehaviour
             float angle = Mathf.Atan2(lookDir.x, lookDir.y) * Mathf.Rad2Deg;// + 180f;
             transform.eulerAngles = new Vector3(0, angle, 0);
            // transform.LookAt(worldPosition);
-        }
+        }*/
 
+        Vector2 lookDir = new Vector2(Utils.mouseWorldPosition.x, Utils.mouseWorldPosition.z) - new Vector2(transform.position.x, transform.position.z);
+        float angleToMousePosition = Mathf.Atan2(lookDir.x, lookDir.y) * Mathf.Rad2Deg;// + 180f;
+        transform.eulerAngles = new Vector3(0, angleToMousePosition, 0);
 
 
         // jumping
@@ -74,7 +84,7 @@ public class MainCharacterController : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
         */
-       
+
 
         //if (Game.isPause) return;
 
@@ -115,6 +125,9 @@ public class MainCharacterController : MonoBehaviour
         //transform.position += move*Time.deltaTime;
         characterController.Move(move * Time.deltaTime);
     }
+
+ 
+
 
     IEnumerator DashTimer()
     {
