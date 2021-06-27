@@ -6,10 +6,13 @@ public class Bullet : MonoBehaviour
 {
     private Vector3 bulleDirection;
     private float speed;
-    public void Setup(Vector3 direction, float speed)
+    public float damageAtack;
+
+    public void Setup(Vector3 direction, float speed, float damageAtack)
     {
         bulleDirection = direction;
         this.speed = speed;
+        this.damageAtack = damageAtack;
     }
 
 
@@ -17,5 +20,11 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         transform.position += bulleDirection * Time.deltaTime * speed;
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Destroy(gameObject);
     }
 }

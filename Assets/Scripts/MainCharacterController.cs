@@ -103,7 +103,7 @@ public class MainCharacterController : MonoBehaviour
         //Vector3 direction = new Vector3(movementHorizontal, 0, movementVertical);
 
         Vector3 moveDirection = Vector3.zero;
-        if (direction.magnitude >= 0.1f)
+        if (direction.magnitude >= 0.05f)
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + camera.transform.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmothVelocity, turnSmothTime);

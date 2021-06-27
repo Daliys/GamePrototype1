@@ -31,7 +31,7 @@ public class Shooting : MonoBehaviour
 
      
 
-        bullet.GetComponent<Bullet>().Setup(bulletDirection, 25);
+        bullet.GetComponent<Bullet>().Setup(bulletDirection, 25, 1f);
         Destroy(bullet, 3);
 
     }
