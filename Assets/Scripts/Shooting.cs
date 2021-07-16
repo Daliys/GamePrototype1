@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Shooting : MonoBehaviour
@@ -22,17 +20,17 @@ public class Shooting : MonoBehaviour
     }
 
 
-    public GameObject bulletPrefab;
+   // public GameObject bulletPrefab;
     public Transform bulletSpawnPosition;
 
     protected virtual void GunShoot(Vector3 bulletDirection)
     {
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPosition.position, Quaternion.identity, null);
+        GameObject bullet = PoolManager.GetObject("bullet",bulletSpawnPosition.position, Quaternion.identity);
 
      
 
         bullet.GetComponent<Bullet>().Setup(bulletDirection, 25, 1f);
-        Destroy(bullet, 3);
+        bullet.GetComponent<PoolObject>().ReturnToPool(3);
 
     }
 

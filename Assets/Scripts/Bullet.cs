@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -7,6 +5,7 @@ public class Bullet : MonoBehaviour
     private Vector3 bulleDirection;
     private float speed;
     public float damageAtack;
+    public PoolObject poolObject;
 
     public void Setup(Vector3 direction, float speed, float damageAtack)
     {
@@ -25,6 +24,8 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
+        poolObject.ReturnToPool();
     }
+
+    
 }

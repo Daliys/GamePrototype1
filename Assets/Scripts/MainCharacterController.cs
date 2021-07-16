@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MainCharacterController : MonoBehaviour
@@ -8,7 +6,7 @@ public class MainCharacterController : MonoBehaviour
     public float speed;
     public float turnSmothTime = 0.1f;
     public float turnSmothVelocity;
-    private Camera camera;
+    private new Camera camera;
     private Animator animator;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
