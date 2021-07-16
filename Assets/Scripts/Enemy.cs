@@ -5,11 +5,12 @@ public class Enemy : MonoBehaviour
 {
 
    // public CharacterController characterController;
-    public Transform attackGoal;
+    private Transform attackGoal;
     public NavMeshAgent navMeshAgent;
 
-    public float helthPoint;
-
+    private float helthPoint;
+    [SerializeField]
+    private int damage;
 
     void Start()
     {
@@ -32,4 +33,6 @@ public class Enemy : MonoBehaviour
             if (helthPoint <= 0) Destroy(gameObject);
         }
     }
+
+    public int GetDamage() { return damage; }
 }

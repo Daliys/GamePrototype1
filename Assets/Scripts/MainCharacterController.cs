@@ -19,14 +19,16 @@ public class MainCharacterController : MonoBehaviour
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
-    public bool isGround;
+    private bool isGround;
 
 
     private float dashSpeedMult = 1;
 
-
-  //  public event EventHandler<EventArgs> OnShoot;
+    public delegate void HelthChanger(int i);
+    public static event HelthChanger onHelthChange;
  
+    [SerializeField]
+    private int helthPoint;
 
     void Start()
     {
@@ -122,6 +124,8 @@ public class MainCharacterController : MonoBehaviour
 
         //transform.position += move*Time.deltaTime;
         characterController.Move(move * Time.deltaTime);
+       
+
     }
 
  
@@ -141,4 +145,15 @@ public class MainCharacterController : MonoBehaviour
        // float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
         //transform.eulerAngles = new Vector3(0,angle,0);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.tag == "Enemy")
+        {
+            helthPoint -= collision.gameObject.GetComponent<Enemy>().GetDamage();
+            helthPoint = helthPoint < 0 ? (0) : (helthPoint);
+            onHelthChange.Invoke(helthPoint);
+        }
+    }
+
 }
