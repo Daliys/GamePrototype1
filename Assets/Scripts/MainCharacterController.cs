@@ -24,6 +24,8 @@ public class MainCharacterController : MonoBehaviour
 
     private float dashSpeedMult = 1;
 
+    private bool isInvulnerable = false;
+
     public delegate void HelthChanger(int i);
     public static event HelthChanger onHelthChange;
  
@@ -129,8 +131,6 @@ public class MainCharacterController : MonoBehaviour
     }
 
  
-
-
     IEnumerator DashTimer()
     {
         dashSpeedMult = 8;
@@ -139,21 +139,24 @@ public class MainCharacterController : MonoBehaviour
     }
 
 
-    private void FixedUpdate()
+   
+    private void OnTriggerEnter(Collider other)
     {
-      //  Vector2 lookDir = new Vector2(mousePosition.x, mousePosition.z) - new Vector2(transform.position.x, transform.position.z);
-       // float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-        //transform.eulerAngles = new Vector3(0,angle,0);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.transform.tag == "Enemy")
+        if (other.tag == "Enemy" && !isInvulnerable)
         {
-            helthPoint -= collision.gameObject.GetComponent<Enemy>().GetDamage();
+            helthPoint -= other.gameObject.GetComponent<Enemy>().GetDamage();
             helthPoint = helthPoint < 0 ? (0) : (helthPoint);
             onHelthChange.Invoke(helthPoint);
+            StartCoroutine(InvulnerableTimer(2));
         }
+    }
+
+
+    IEnumerator InvulnerableTimer(float time)
+    {
+        isInvulnerable = true;
+        yield return new WaitForSecondsRealtime(time);
+        isInvulnerable = false;
     }
 
 }
