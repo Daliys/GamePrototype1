@@ -1,4 +1,5 @@
 using System.Collections;
+using System.ComponentModel;
 using UnityEngine;
 
 public class MainCharacterController : MonoBehaviour
@@ -32,7 +33,7 @@ public class MainCharacterController : MonoBehaviour
     [SerializeField]
     private int helthPoint;
 
-    void Start()
+    private void Start()
     {
         animator = GetComponent<Animator>();
         camera = Camera.main;
@@ -40,7 +41,7 @@ public class MainCharacterController : MonoBehaviour
     }
 
 
-    void Update()
+    private void Update()
     {
         //mousePosition = camera.ScreenToWorldPoint(Input.mousePosition);
         //print(Input.mousePosition);
@@ -116,7 +117,7 @@ public class MainCharacterController : MonoBehaviour
 
         }
 
-        Vector3 move = moveDirection * speed * dashSpeedMult;
+        Vector3 move = moveDirection * (speed * dashSpeedMult);
 
 
         if (Input.GetButtonDown("Dash") && dashSpeedMult == 1f){
@@ -142,17 +143,28 @@ public class MainCharacterController : MonoBehaviour
    
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy" && !isInvulnerable)
+        if (other.CompareTag("Enemy") && !isInvulnerable)
         {
             helthPoint -= other.gameObject.GetComponent<Enemy>().GetDamage();
             helthPoint = helthPoint < 0 ? (0) : (helthPoint);
-            onHelthChange.Invoke(helthPoint);
+            onHelthChange?.Invoke(helthPoint);
             StartCoroutine(InvulnerableTimer(2));
+        }
+
+        if (other.CompareTag("HelthBuff"))
+        {
+            int addedHelthCount = other.gameObject.GetComponent<HelthBuff>().GetHelthBuffAddedCount();
+            if ((helthPoint + addedHelthCount) <= 3)
+            {
+                helthPoint+= addedHelthCount;
+                onHelthChange?.Invoke(helthPoint);
+                other.GetComponent<HelthBuff>().DestroyHelthBuff();
+            }
+           
         }
     }
 
-
-    IEnumerator InvulnerableTimer(float time)
+    private IEnumerator InvulnerableTimer(float time)
     {
         isInvulnerable = true;
         yield return new WaitForSecondsRealtime(time);
