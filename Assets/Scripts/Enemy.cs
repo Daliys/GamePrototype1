@@ -12,17 +12,26 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private int damage;
 
+    private Animator animator;
+
     void Start()
     {
         attackGoal = GameObject.FindGameObjectWithTag("Player").transform;
         navMeshAgent = transform.GetComponent<NavMeshAgent>();
+        animator = transform.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         navMeshAgent.SetDestination(attackGoal.position);
-    
+     
+        animator.SetFloat("Movement", navMeshAgent.velocity.magnitude);
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            animator.SetTrigger("Atak1");
+        }
     }
 
     private void OnTriggerEnter(Collider other)
