@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1105298152}
   - component: {fileID: 1105298155}
   - component: {fileID: 598666558}
-  - component: {fileID: 598666553}
   m_Layer: 0
   m_Name: Grey_Wolf
   m_TagString: Enemy
@@ -105,6 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 0}
   damage: 1
+  animator: {fileID: 2828580777913990844}
 --- !u!65 &598666558
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -118,25 +118,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.67544746, y: 0.7336534, z: 0.75796986}
   m_Center: {x: -0.025948524, y: 1.2885299, z: 0.78933096}
---- !u!95 &598666553
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5055757490089602969}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 65034c9cfb3e33745b2dc5d94742974a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!95 &2828580777913990844
 Animator:
   serializedVersion: 3

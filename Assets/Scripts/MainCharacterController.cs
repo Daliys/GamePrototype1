@@ -8,7 +8,7 @@ public class MainCharacterController : MonoBehaviour
     public float turnSmothTime = 0.1f;
     public float turnSmothVelocity;
     private new Camera camera;
-    private Animator animator;
+    public Animator animator;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
     public float speedMovementAnimstion;
@@ -36,7 +36,7 @@ public class MainCharacterController : MonoBehaviour
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
         camera = Camera.main;
    
     }

@@ -12,13 +12,13 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private int damage;
 
-    private Animator animator;
+    public Animator animator;
 
     void Start()
     {
         attackGoal = GameObject.FindGameObjectWithTag("Player").transform;
         navMeshAgent = transform.GetComponent<NavMeshAgent>();
-        animator = transform.GetComponent<Animator>();
+        //animator = transform.GetComponent<Animator>();
     }
 
     // Update is called once per frame
