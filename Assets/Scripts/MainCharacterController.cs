@@ -1,5 +1,6 @@
 using System.Collections;
 using System.ComponentModel;
+using System.Configuration;
 using UnityEngine;
 
 public class MainCharacterController : MonoBehaviour
@@ -22,7 +23,7 @@ public class MainCharacterController : MonoBehaviour
     public LayerMask groundMask;
     private bool isGround;
 
-
+    public Transform playerSpawner;
     private float dashSpeedMult = 1;
 
     private bool isInvulnerable = false;
@@ -128,6 +129,7 @@ public class MainCharacterController : MonoBehaviour
         move.y = velocity.y;
 
         //transform.position += move*Time.deltaTime;
+     if(!isDead)
         characterController.Move(move * Time.deltaTime);
        
 
@@ -136,13 +138,14 @@ public class MainCharacterController : MonoBehaviour
  
     IEnumerator DashTimer()
     {
-        dashSpeedMult = 8;
+        
+            dashSpeedMult = 8;
         yield return new WaitForSecondsRealtime(0.1f);
         dashSpeedMult = 1f;
     }
 
-
-   
+    private bool isDead;
+ 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy") && !isInvulnerable)
@@ -150,7 +153,8 @@ public class MainCharacterController : MonoBehaviour
             helthPoint -= other.gameObject.GetComponent<Enemy>().GetDamage();
             helthPoint = helthPoint < 0 ? (0) : (helthPoint);
             onHelthChange?.Invoke(helthPoint);
-            StartCoroutine(InvulnerableTimer(2));
+            if (helthPoint != 0) StartCoroutine(InvulnerableTimer(2));
+            else StartCoroutine(DeathPlayer());
         }
 
         if (other.CompareTag("HelthBuff"))
@@ -171,6 +175,18 @@ public class MainCharacterController : MonoBehaviour
         isInvulnerable = true;
         yield return new WaitForSecondsRealtime(time);
         isInvulnerable = false;
+    }
+    private IEnumerator DeathPlayer()
+    {
+        isDead = true;
+        transform.position = playerSpawner.position;
+        yield return new WaitForSecondsRealtime(0.1f);
+     
+        transform.position = playerSpawner.position;
+        helthPoint = 3;
+        onHelthChange?.Invoke(helthPoint);
+        
+        isDead = false;
     }
 
 }
