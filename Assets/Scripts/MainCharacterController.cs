@@ -34,6 +34,8 @@ public class MainCharacterController : MonoBehaviour
  
     [SerializeField]
     private int helthPoint;
+    [SerializeField]
+    private float damage = 1f;
 
     private void Start()
     {
@@ -181,12 +183,34 @@ public class MainCharacterController : MonoBehaviour
         isDead = true;
         transform.position = playerSpawner.position;
         yield return new WaitForSecondsRealtime(0.1f);
-     
+
         transform.position = playerSpawner.position;
         helthPoint = 3;
         onHelthChange?.Invoke(helthPoint);
-        
+
         isDead = false;
+    }
+
+    public void AddSpeed(float amount)
+    {
+        speed += amount;
+    }
+
+    public void AddDamage(float amount)
+    {
+        damage += amount;
+    }
+
+    public void AddHealth(int amount)
+    {
+        helthPoint += amount;
+        helthPoint = Mathf.Clamp(helthPoint, 0, 3);
+        onHelthChange?.Invoke(helthPoint);
+    }
+
+    public float GetDamage()
+    {
+        return damage;
     }
 
 }
