@@ -7,9 +7,17 @@ public class PlayerInventory : MonoBehaviour
     public List<Item> items = new List<Item>();
     public MainCharacterController controller;
 
+    public static event System.Action<int> OnGoldChanged;
+
     private void Awake()
     {
         if (controller == null) controller = GetComponent<MainCharacterController>();
+    }
+
+    public void AddGold(int amount)
+    {
+        gold += amount;
+        OnGoldChanged?.Invoke(gold);
     }
 
     public bool Purchase(Item item)
@@ -18,6 +26,7 @@ public class PlayerInventory : MonoBehaviour
         gold -= item.cost;
         items.Add(item);
         ApplyItem(item);
+        OnGoldChanged?.Invoke(gold);
         return true;
     }
 
