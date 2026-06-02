@@ -49,9 +49,7 @@ public class MainCharacterController : MonoBehaviour
     {
         //mousePosition = camera.ScreenToWorldPoint(Input.mousePosition);
         //print(Input.mousePosition);
-
-      
-
+        
         /*
         Vector3 worldPosition;
         Plane plane = new Plane(Vector3.up, 0);
