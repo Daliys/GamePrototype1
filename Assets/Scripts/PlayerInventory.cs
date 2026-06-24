@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    public int gold;
+    public int gold = 100;
     public List<Item> items = new List<Item>();
     public MainCharacterController controller;
 
